@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form action="/edit_user/{{user.id}}" method="post" accept-charset="utf-8"
+      enctype="application/x-www-form-urlencoded">
+
+    <label for="fio">FIO</label>
+
+    <input id="fio" name="fio" type="text" value="{{user.fio}}" autofocus/>
+    <label for="job_title">Job title</label>
+    <input id="job_title" name="job_title" type="text" value="{{user.job_title}}"/>
+    <label for="celery">Celery</label>
+    <input id="celery" name="celery" type="number" value="{{user.celery}}"/>
+    <label for="invite_date">Invite date</label>
+    <input id="invite_date" name="invite_date" type="date" value="{{user.invite_date}}"/>
+    <input id="boss_id" name="boss_id" type="number" value="{{boss_id}}" style="display:none;"/>
+
+
+    <input type="submit" value="add user"/>
+
+</form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "testtask"
+version = "0.1.0"
+description = ""
+authors = ["seva"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+aiohttp = "^3.8.3"
+pydantic = "^1.10.2"
+sqlalchemy = "^1.4.42"
+aiohttp-jinja2 = "^1.5"
+jinja2 = "^3.1.2"
+dynaconf = "^3.1.11"
+asyncpg = "^0.27.0"
+psycopg2 = "^2.9.5"
+
+
+[tool.poetry.group.dev.dependencies]
+poetry-lock-package = "^0.4.5"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

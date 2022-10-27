@@ -1,0 +1,14 @@
+[default]
+data_base_url = 'postgresql+asyncpg://postgres:password@postgres:5432/postgres'
+data_base_url_sync = 'postgresql://postgres:password@postgres:5432/postgres'
+domain = 'localhost'
+port = 8080
+[development]
+data_base_url = 'postgresql+asyncpg://postgres:password@postgres:5432/postgres'
+data_base_url_sync = 'postgresql://postgres:password@postgres:5432/postgres'
+domain = 'localhost'
+port = 8080
+
+[production]
+domain = 'seva.com'
+port = 80

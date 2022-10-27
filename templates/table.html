@@ -1,0 +1,127 @@
+<!doctype html>
+<html class="zc-html">
+
+<head>
+  <meta charset="utf-8">
+  <title>ZingSoft Demo</title>
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <style>
+    .zc-body {
+      background: #f9f9f9;
+    }
+
+    .chart--container {
+      height: 100%;
+      width: 100%;
+      min-height: 950px;
+    }
+
+    .zc-ref {
+      display: none;
+    }
+  </style>
+</head>
+​
+
+<body class="zc-body">
+  <div id="myChart" class="chart--container">
+    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+  </div>
+  <script>
+    let chartData = [
+
+        {% for user in users %}
+        {
+          id: '{{user.id}}',
+          parent: '{{user.boss_id or ""}}',
+          name: '{{user.fio}}<br>{{user.job_title}}<br> <a href="{{base_url}}/create_user?boss_id={{user.id}}">Добавить подчиненного</a>',
+          value: 12,
+          link: '<a href="{{base_url}}/create_user?boss_id={{user.id}}">Добавить подчиненного</a>'
+        },
+        {%endfor%}
+
+      ];
+
+    let chartConfig = {
+      type: 'tree',
+      backgroundColor: '#f9f9f9',
+      options: {
+        aspect: 'tree-down',
+        orgChart: true,
+        packingFactor: 1,
+        link: {
+          lineColor: '#000'
+        },
+        'link[parent-911sm]': {
+          aspect: 'side-before'
+        },
+        'link[parent-911gism]': {
+          aspect: 'side-before'
+        },
+        'link[parent-dirpr]': {
+          aspect: 'side-before'
+        },
+        node: {
+          height: '125px',
+          width: '175px',
+          borderColor: '#333333',
+          borderWidth: '1px',
+          shadow: true,
+          shadowAlpha: 0.5,
+          shadowDistance: '2px',
+          label: {
+            color: '#fff',
+            fontSize: '10px'
+          },
+          hoverState: {
+            visible: true
+          },
+          tooltip: false
+        },
+        'node[cls-rshifted]': {
+          offsetX: '25px'
+        },
+        'node[cls-lshifted]': {
+          offsetX: '-25px'
+        },
+        'node[cls-bblack]': {
+          backgroundColor: '#000',
+          width: '200px'
+        },
+        'node[cls-borange]': {
+          backgroundColor: '#F6931D',
+          width: '200px'
+        },
+        'node[cls-bred]': {
+          backgroundColor: '#C00000',
+          width: '200px'
+        },
+        'node[cls-blightblue]': {
+          backgroundColor: '#00B9C2',
+          width: '200px'
+        },
+        'node[cls-bblue]': {
+          backgroundColor: '#00408F',
+          width: '200px'
+        },
+        'node[cls-bgreen]': {
+          backgroundColor: '#70AD47',
+          width: '80px'
+        }
+      },
+      plotarea: {
+        margin: '60px 60x 100x 60'
+      },
+      series: chartData
+    };
+
+    zingchart.render({
+      id: 'myChart',
+      width: '100%',
+      height: '100%',
+      data: chartConfig
+    });
+  </script>
+</body>
+
+</html>

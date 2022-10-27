@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="zc-html">
+
+<head>
+  <meta charset="utf-8">
+  <title>ZingSoft Demo</title>
+  <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
+  <style>
+    .zc-html,
+    .zc-body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .chart--container {
+      height: 100%;
+      width: 100%;
+      min-height: 530px;
+    }
+
+    .zc-ref {
+      display: none;
+    }
+  </style>
+</head>
+
+<body class="zc-body">
+  <!-- CHART CONTAINER -->
+  <div id="myChart">
+    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+  </div>
+  <a></a>
+  <script>
+    window.addEventListener('load', () => {
+      let chartData11 = [{
+          id: 'theworld',
+          parent: '',
+          name: 'lala'
+        },
+        {
+          id: 'asia',
+          parent: 'theworld',
+          name: 'Asia',
+          value: 4100000000
+        },
+        {
+          id: 'africa',
+          parent: 'theworld',
+          name: 'Africa',
+          value: 1260000000
+        },
+        {
+          id: 'america',
+          parent: 'theworld',
+          name: 'America',
+          value: 328000000
+        },
+        {
+          id: 'europe',
+          parent: 'theworld',
+          name: 'Europe',
+          value: 741000000
+        },
+        {
+          id: 'ca',
+          parent: 'america',
+          name: 'California',
+          value: 32000000
+        },
+        {
+          id: 'ny',
+          parent: 'america',
+          name: 'New York',
+          value: 19000000
+        },
+        {
+          id: 'txt',
+          parent: 'america',
+          name: 'Texas',
+          value: 29000000
+        },
+      ];
+
+      let chartData = [
+
+        {% for user in users %}
+        {
+          id: '{{user.id}}',
+          parent: '{{user.boss_id or ""}}',
+          name: '{{user.fio}}',
+          value: 1
+        },
+
+        {%endfor%}
+
+      ];
+
+
+      let chartConfig = {
+        type: 'tree',
+        title: {
+          text: 'hello',
+        },
+        plotarea: {
+          marginTop: 50,
+        },
+        options: {
+          weightedLinks: true,
+          maxSize: 30,
+          minSize: 30,
+          node: {
+            height: '65px',
+            borderColor: '#333333',
+            borderWidth: '1px',
+            shadow: true,
+            shadowAlpha: 0.5,
+            shadowDistance: '2px',
+            label: {
+              color: '#fff',
+              fontSize: '10px'
+          },
+          'node[cls-rshifted]': {
+            offsetX: '25px'
+          },
+          'node[cls-lshifted]': {
+            offsetX: '-25px'
+          },
+          'node[cls-bblack]': {
+            backgroundColor: '#000',
+            width: '120px'
+          },
+          'node[cls-borange]': {
+            backgroundColor: '#F6931D',
+            width: '80px'
+          },
+          'node[cls-bred]': {
+            backgroundColor: '#C00000',
+            width: '80px'
+          },
+          'node[cls-blightblue]': {
+            backgroundColor: '#00B9C2',
+            width: '80px'
+          },
+          'node[cls-bblue]': {
+            backgroundColor: '#00408F',
+            width: '80px'
+          },
+          'node[cls-bgreen]': {
+            backgroundColor: '#70AD47',
+            width: '80px'
+          }
+        },
+        },
+        series: chartData
+      }
+
+      zingchart.render({
+        id: 'myChart',
+        data: chartConfig,
+        height: '45%',
+        width: '100%',
+        output: 'canvas'
+      });
+    });
+  </script>
+</body>
+
+</html>

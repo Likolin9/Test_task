@@ -1,0 +1,22 @@
+version: "3.9"
+services:
+  my_app:
+    build: .
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+  postgres:
+    image: "postgres"
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+#    ports:
+#      - '5432:5432'
+    networks:
+      - mynetwork
+networks:
+  mynetwork:
+    name: "testenv"
