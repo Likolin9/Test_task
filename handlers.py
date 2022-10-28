@@ -1,26 +1,13 @@
-from datetime import datetime
-
 from aiohttp import web
 from aiohttp.web_request import Request
-from pydantic import BaseModel, ValidationError
-from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
-from sqlalchemy.dialects import postgresql
+from pydantic import ValidationError
 
-from sqlalchemy.ext.asyncio import create_async_engine
 import aiohttp_jinja2
-import jinja2
-
 from config import settings
 from src.user.db import get_all_users, save_user, update_user, get_user
 from src.user.domain import User, UpdateUserRequest
 
 BASE_URl = f'http://{settings.domain}:{settings.port}'
-
-
-async def hello(request):
-    name = request.match_info.get('name', "Anonymous")
-    text = "Hello, " + name
-    return web.Response(text=text)
 
 
 async def user(request: Request):
@@ -69,12 +56,6 @@ async def update_user_form(request):
         'boss_id': user_.boss_id,
         'user': user_,
     }
-
-
-@aiohttp_jinja2.template('graph.html')
-async def graph(request):
-    all_users = await get_all_users(request.app)
-    return {'users': all_users}
 
 
 @aiohttp_jinja2.template('table.html')

@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>ZingSoft Demo</title>
+  <title></title>
   <script nonce="undefined" src="https://cdn.zingchart.com/zingchart.min.js"></script>
   <style>
     .zc-body {
@@ -24,8 +24,9 @@
 ​
 
 <body class="zc-body">
+  <a href="{{base_url}}/users">Змінити</a>
   <div id="myChart" class="chart--container">
-    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref">Powered by ZingChart</a>
+    <a href="https://www.zingchart.com/" rel="noopener" class="zc-ref"></a>
   </div>
   <script>
     let chartData = [
@@ -34,9 +35,8 @@
         {
           id: '{{user.id}}',
           parent: '{{user.boss_id or ""}}',
-          name: '{{user.fio}}<br>{{user.job_title}}<br> <a href="{{base_url}}/create_user?boss_id={{user.id}}">Добавить подчиненного</a>',
+          name: '{{user.fio}}<br>{{user.job_title}}<br>{{user.celery}}<br>{{user.invite_date}}',
           value: 12,
-          link: '<a href="{{base_url}}/create_user?boss_id={{user.id}}">Добавить подчиненного</a>'
         },
         {%endfor%}
 
